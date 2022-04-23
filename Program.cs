@@ -2,13 +2,16 @@
 
 Console.WriteLine("Enter word.");
 var word = Console.ReadLine();
+var length = word.Length;
+
+#region task 5
 Console.WriteLine(word.Reverse().ToArray());
 
 var pair = Number.AskPair();
 var X = pair.first;
 var Y = pair.second;
 
-var length = word.Length;
+
 Console.WriteLine("Counting of symbols in word begins from 0.");
 if (length-1 < X)
 {
@@ -37,21 +40,58 @@ else
     Console.WriteLine($"Can't definite equity of symbol {X} and {Y} because entered word is too short.");
 }
 
-X = Number.AskOne();
-var i = 0;
-var numbers = new List<int>();
-do
+
+
+#region change place of some chars
+
+var powList = Number.AskOneToMakeArray(length);
+
+var randList = new List<int>();
+var randomizer = new Random();
+for( int i=powList.Count; i >0 ; i--)
 {
-    var temp =(int) Math.Pow(X, i);
-    if (temp <= length - 1)
+    var temp = randomizer.Next(i);
+    randList.Add(powList[temp]);
+    powList.RemoveAt(temp);
+}
+
+for (int i = 0; i < length; i++)
+{
+    if (randList.Contains(i))
     {
-        numbers.Add(temp);
-        i++;
+        Console.Write(word[randList[0]]);
+        randList.RemoveAt(0);
     }
-    else
+    else 
     {
-        break;
+        Console.Write(word[i]);
     }
 }
-while (true);
+#endregion
 
+#region count chars
+var tempCharList = new List<char>();
+foreach (var ca in word)
+{
+    if (!tempCharList.Contains(ca))
+    {
+        tempCharList.Add(ca);
+    }
+}
+Console.WriteLine($"Entered word contains {tempCharList.Count} different chars.");
+#endregion
+
+#region count Neighbours
+var countNeighbours = 0;
+for (int i = 0; i < length - 1; i++)
+{
+    if (word[i] == word[i + 1])
+    {
+        countNeighbours++;
+    }
+}
+Console.WriteLine($"Amount of equal neighbours = {countNeighbours}");
+#endregion
+
+
+#endregion task 5

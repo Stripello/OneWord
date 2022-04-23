@@ -2,19 +2,39 @@
 {
     internal class Number
     {
-        internal static int AskOne()
+        internal static List<int> AskOneToMakeArray(int length)
         {
+            uint result;
             do
             {
+
                 Console.WriteLine("Please, enter the number.");
                 var userAnswer = Console.ReadLine();
-                if (uint.TryParse(userAnswer, out uint result) && result > 1)
+                if (uint.TryParse(userAnswer, out result) && result > 1)
                 {
-                    return (int)result;
+                    break;
                 }
                 Console.WriteLine("Can't parse entered string to integer number greater than 1");
             }
             while (true);
+
+            var answer = new List<int>();
+            var i = 0;
+            do
+            {
+                var temp = (int)Math.Pow(result, i);
+                if (temp <= length - 1)
+                {
+                    answer.Add(temp);
+                    i++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            while (true);
+            return answer;
         }
 
         internal static (int first, int second) AskPair()
