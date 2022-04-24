@@ -5,7 +5,7 @@ Console.WriteLine("Important message: Counting of symbols in word begins from 0.
 Console.WriteLine("Enter word.");
 var word = Console.ReadLine();
 var length = word.Length;
-/*
+
 //write the inversion of the entered word
 Console.WriteLine(Word.Reverse(word));
 
@@ -26,6 +26,5 @@ Word.SwapPlaces(word);
 //define amount of different chars in word
 Word.Neighbours(word);
 
-*/
 //Operations with half of the word
 Word.HalfOperations(word);
